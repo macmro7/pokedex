@@ -9,12 +9,12 @@ function Pokemon(props) {
     async function getData() {
         const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then(response => response.json());
-        console.log(data)
+        //console.log(data)
         setPokemon(data)
         setIsLoading(false)
         //getPokemonData(data.results)
         //setNextUrl(data.next)
-        console.log('siema')
+        //console.log('siema')
     }
 
     function handleClick() {
@@ -30,12 +30,12 @@ function Pokemon(props) {
         getData()
       }, [])
 
-    console.log(pokemon)
+    //console.log(pokemon)
     //<img src={pokemon.sprites.front_default} alt="pokemon"/>    
     return (
         <>
             { pokemon && 
-            <button className="pokemon--containter" onClick={handleClick}>
+            <button className="pokemon--container" onClick={handleClick}>
                 <ul className="pokemon">
                     <li>
                         <img src={pokemon.sprites.other["official-artwork"].front_default} alt="pokemon"/>     

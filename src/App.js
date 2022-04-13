@@ -8,6 +8,7 @@ function App() {
   const [ isLoaded, setIsLoaded ] = useState(false)
   const [ url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/`)
   const [ nextUrl, setNextUrl ] = useState()
+  const [ prevUrl, setPrevUrl ] = useState()
   const [pokemon, setPokemon ] = useState()
   const [error, setError] = useState(null);
   const [ list, setList ] = useState([])
@@ -20,9 +21,10 @@ function App() {
     setPokemonData(data.results) 
     //getPokemonData(data.results)
     setNextUrl(data.next)
+    setPrevUrl(data.previous)
   }
 
-  function getPokemonData(results) {
+  /*function getPokemonData(results) {
     //setPokemonData([]) // delete this
     const pokemons = []
     results.map(async pokemon => {
@@ -32,12 +34,14 @@ function App() {
 
       }, setIsLoaded(true))
     setList(pokemons)
+  }*/
+
+  function loadNext() {
+    setUrl( nextUrl )
   }
 
-  function loadMore() {
-    setUrl( nextUrl )
-    //console.log(click)
-    console.log(nextUrl)
+  function loadPrevious() {
+    prevUrl && setUrl( prevUrl )
   }
 
   useEffect(() => {
@@ -61,13 +65,18 @@ function App() {
   // </li>)) 
   // : 'Loading...' }
 
-  console.log(pokemonData)
+  //console.log(pokemonData)
   return (
     <div className="App">
       <Navbar />
-      <button onClick={loadMore}>Load more pokemons</button>
+      <div className="pagination">
+        <button onClick={loadPrevious}>Previous page</button>
+        <button onClick={loadNext}>Next page</button>
+      </div>
       <div className="pokemon--list">
-        {pokemonData ? pokemonData.map((pokemon) => (<Pokemon key={pokemon.name} name={pokemon.name} />)) : 'Loading...' }
+        {pokemonData ? pokemonData.map((pokemon) => (
+          <Pokemon key={pokemon.name} name={pokemon.name} />)) 
+          : 'Loading...' }
       </div>
     </div>
   );
