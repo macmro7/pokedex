@@ -1,8 +1,8 @@
 function Navbar() {
     return (
-        <header>
+        <nav>
             <h1>Pokedex</h1>
-        </header>
+        </nav>
     )
 }
 
