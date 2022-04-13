@@ -17,7 +17,7 @@ function App() {
   async function getData() {
     const data = await fetch(url)
     .then(response => response.json());
-    setPokemonData(data.results)
+    setPokemonData(data.results) 
     //getPokemonData(data.results)
     setNextUrl(data.next)
   }
@@ -64,9 +64,11 @@ function App() {
   console.log(pokemonData)
   return (
     <div className="App">
-      <button onClick={loadMore}>Load more pokemons</button>
       <Navbar />
-      {pokemonData ? pokemonData.map((pokemon) => (<Pokemon key={pokemon.name} name={pokemon.name} />)) : 'Loading...' }
+      <button onClick={loadMore}>Load more pokemons</button>
+      <div className="pokemon--list">
+        {pokemonData ? pokemonData.map((pokemon) => (<Pokemon key={pokemon.name} name={pokemon.name} />)) : 'Loading...' }
+      </div>
     </div>
   );
 }
