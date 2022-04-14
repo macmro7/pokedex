@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import pokeballSvg from '../img/pokeball.svg'
 
 function Navbar(props) {
     const { handleSubmit, refresh } = props
@@ -15,11 +16,14 @@ function Navbar(props) {
         handleSubmit(pokemonName)
     }
     //<input type="submit" onClick={onSubmit} />
-    return (
+    /*return (
         <nav>
             <ul>
                 <li>
-                    <button className="logo" onClick={refresh}>Pokedex</button>
+                    <button className="logo" onClick={refresh}>
+                        <img src={ pokeballSvg } alt="pokeball"/>
+                        Pokedex
+                    </button>
                 </li>
                 <li>
                     <form className="search--bar" onSubmit={onSubmit}>
@@ -28,6 +32,18 @@ function Navbar(props) {
                 </li>
             </ul>
             
+        </nav>
+    )*/
+
+    return (
+        <nav>
+            <button className="logo" onClick={refresh}>
+                <img src={ pokeballSvg } alt="pokeball"/>
+                Pokedex
+            </button>
+            <form className="search--bar" onSubmit={onSubmit}>
+                <input type="text" name="pokemonName" onChange={handleInput} placeholder="Search..." />
+            </form>
         </nav>
     )
 }
