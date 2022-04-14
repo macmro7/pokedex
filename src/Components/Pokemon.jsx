@@ -32,6 +32,8 @@ function Pokemon(props) {
 
     //console.log(pokemon)
     //<img src={pokemon.sprites.front_default} alt="pokemon"/>    
+    
+    //{ pokemon.types[0].type.name }    
     return (
         <>
             { pokemon && 
@@ -40,11 +42,13 @@ function Pokemon(props) {
                     <li>
                         <img src={pokemon.sprites.other["official-artwork"].front_default} alt="pokemon"/>     
                     </li>
-                    <li>
+                    <li className="pokemon--name">
                         { pokemon.name }        
                     </li>
-                    <li>
-                        { pokemon.types[0].type.name }        
+                    <li className="pokemon--type">
+                        <ul>
+                            { pokemon.types.map(item => <li>{item.type.name}</li>)}       
+                        </ul>
                     </li>
                     <ul className="content" style={{'display': display}}>
                         <li>height: { pokemon.height }</li>
