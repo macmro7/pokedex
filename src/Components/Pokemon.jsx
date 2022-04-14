@@ -38,7 +38,7 @@ function Pokemon(props) {
         <>
             { pokemon && 
             <button className="pokemon--container" onClick={handleClick}>
-                <ul className="pokemon">
+                <ul>
                     <li>
                         <img src={pokemon.sprites.other["official-artwork"].front_default} alt="pokemon"/>     
                     </li>

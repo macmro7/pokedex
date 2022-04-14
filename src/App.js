@@ -11,6 +11,7 @@ function App() {
   const [ prevUrl, setPrevUrl ] = useState()
   const [ pokemonName, setPokemonName ] = useState()
   const [ error, setError ] = useState()
+  const [ darkMode, setDarkMode ] = useState(false)
   //const [ pokemonList, setPokemonList ] = useState()
   const pokemonList = []
 
@@ -100,23 +101,21 @@ function App() {
     setError('')
   }
 
+  function changeMode() {
+    setDarkMode(prev => !prev)
+  }
+
   useEffect(() => {
     getData()
   }, [url, pokemonName])
 
-  // {error ? error :
-  //   (<div className="pokemon--list">
-  //     {pokemonData ? pokemonData.map((pokemon) => (
-  //       <Pokemon key={pokemon.name} name={pokemon.name} />)) 
-  //       : 'Loading...' }
-  //   </div>)
-  // } 
-  console.log(prevUrl)
   return (
-    <div className="App">
+    <div className={darkMode ? "dark--mode" : "App"}>
       <Navbar 
         handleSubmit={handleSubmit} 
         refresh={refresh} 
+        changeMode={changeMode}
+        darkMode={darkMode}
       />
       <div className={pokemonName ? "hidden" : "pagination"}>
         <button 
@@ -126,14 +125,15 @@ function App() {
           Previous page
         </button>
         <button 
+          disabled={!nextUrl ? "disabled" : ""} 
           onClick={loadNext}
         >
           Next page
         </button>
       </div>
       <div className="pokemon--list">
-        { error && error }
-        { isLoading && <h1>Loading...</h1>}
+        { error && <h1 className="error">{ error }</h1> }
+        { isLoading && <h1 className="loading">Loading...</h1>}
         { pokemonData && pokemonData.map((pokemon) => (
           <Pokemon key={pokemon.name} name={pokemon.name} />))}
       </div>
