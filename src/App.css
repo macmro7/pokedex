@@ -52,9 +52,14 @@ nav .search--bar input {
 }
 
 nav .toggle--dark {
-  font-size: 40px;
-  width: 1em;
+  width: 35px;
   background: orange;
+  cursor: pointer;
+}
+
+nav .toggle--dark img {
+  display: block;
+  top: 10px;
 }
 
 .pagination {
@@ -201,7 +206,7 @@ nav .toggle--dark {
   border-color: rgb(146, 146, 146);
 }
 
-.dark--mode .error, .dark--mode .name {
+.dark--mode .error, .dark--mode .loading {
   color: var(--gray);
 }
 
