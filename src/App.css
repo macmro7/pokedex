@@ -51,6 +51,10 @@ nav .search--bar input {
   --margin-right: 5em;
 }
 
+input::placeholder {
+  color: black;
+}
+
 nav .toggle--dark {
   width: 35px;
   background: orange;
@@ -182,9 +186,12 @@ nav .toggle--dark img {
   color: var(--gray);
 }
 
+.dark--mode input::placeholder {
+  color: rgb(177, 177, 177);
+}
+
 .dark--mode nav .toggle--dark {
   background: rgb(63, 19, 0);
-  color: white;
 }
 
 .dark--mode {
