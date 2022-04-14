@@ -9,10 +9,25 @@ nav {
   padding: 1em;
 }
 
+nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 3em;
+}
+
+nav .search--bar input {
+  padding: 0.7em 2em;
+  background-color: orange;
+  border: 0.2em solid white;
+  border-radius: 1em;
+  --opacity: 0.8;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 7em;
+  gap: 8em;
   margin-top: 1em;
 }
 
@@ -53,6 +68,7 @@ nav {
   cursor: pointer;
 
   transition: margin 0.1s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pokemon--container:hover {
@@ -128,3 +144,13 @@ nav {
 /*.content {
   display: none;
 }*/
+
+@media (max-width: 680px) {
+  .pagination {
+    gap: 1em;
+  }
+
+  .pokemon--container:hover {
+    margin-top: 2em;
+  }
+}
