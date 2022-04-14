@@ -7,8 +7,6 @@ function Navbar(props) {
     const { handleSubmit, refresh, changeMode, darkMode } = props
     const [ pokemonName, setPokemonName ] = useState('')
 
-    //console.log(pokemonName)
-
     function handleInput(event) {
         setPokemonName(event.target.value)
     }

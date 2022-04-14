@@ -4,21 +4,9 @@ function Pokemon(props) {
     const { name } = props
     const [ pokemon, setPokemon ] = useState()
     const [ display, setDisplay ] = useState("none")
-    const [ isLoading, setIsLoading ] = useState(true)
-
-    async function getData() {
-        const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        .then(response => response.json());
-        //console.log(data)
-        setPokemon(data)
-        setIsLoading(false)
-        //getPokemonData(data.results)
-        //setNextUrl(data.next)
-        //console.log('siema')
-    }
 
     function handleClick() {
-        if (display == "none") {
+        if (display === "none") {
             setDisplay("block")
         }
         else {
@@ -27,13 +15,15 @@ function Pokemon(props) {
     }
 
     useEffect(() => {
-        getData()
-      }, [])
+        async function getData() {
+            const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            .then(response => response.json());
+            setPokemon(data)
+        }
 
-    //console.log(pokemon)
-    //<img src={pokemon.sprites.front_default} alt="pokemon"/>    
-    
-    //{ pokemon.types[0].type.name }    
+        getData()
+      }, [name])
+  
     return (
         <>
             { pokemon && 
