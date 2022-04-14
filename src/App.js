@@ -75,19 +75,23 @@ function App() {
 
   function loadNext() {
     setIsLoading(true)
+    setPokemonData(null)
     setUrl( nextUrl )
-    console.log(nextUrl)
   }
 
   function loadPrevious() {
     setIsLoading(true)
+    setPokemonData(null)
     prevUrl && setUrl( prevUrl )
   }
 
   function handleSubmit(name) {
-    setIsLoading(true)
-    setError(null)
-    name && setPokemonName(name)
+    if(pokemonName != name) { // triggers api calls only once with the same name
+      setIsLoading(true)
+      setError(null)
+      setPokemonData(null)
+      setPokemonName(name)
+    }
   }
 
   function refresh(){
@@ -107,12 +111,25 @@ function App() {
   //       : 'Loading...' }
   //   </div>)
   // } 
+  console.log(prevUrl)
   return (
     <div className="App">
-      <Navbar handleSubmit={handleSubmit} refresh={refresh} />
-      <div className="pagination">
-        <button onClick={loadPrevious}>Previous page</button>
-        <button onClick={loadNext}>Next page</button>
+      <Navbar 
+        handleSubmit={handleSubmit} 
+        refresh={refresh} 
+      />
+      <div className={pokemonName ? "hidden" : "pagination"}>
+        <button 
+          disabled={!prevUrl ? "disabled" : ""} 
+          onClick={loadPrevious}
+        >
+          Previous page
+        </button>
+        <button 
+          onClick={loadNext}
+        >
+          Next page
+        </button>
       </div>
       <div className="pokemon--list">
         { error && error }

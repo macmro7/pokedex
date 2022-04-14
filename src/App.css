@@ -62,7 +62,10 @@ nav .search--bar input {
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  max-width: 200px;
+  --max-width: 200px;
+  --min-width: 200px;
+  width: 200px;
+  height: 261px;
 
   padding: 1em;
   cursor: pointer;
@@ -137,13 +140,14 @@ nav .search--bar input {
   list-style: none;
 }*/
 
-.pokemon > li {
-  --background: red;
-}
 
 /*.content {
   display: none;
 }*/
+
+.hidden {
+  display: none;
+}
 
 @media (max-width: 680px) {
   .pagination {
